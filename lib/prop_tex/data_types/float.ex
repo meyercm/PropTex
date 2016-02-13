@@ -16,7 +16,7 @@ defmodule PropTex.DataTypes.Float do
     %{preset: :any, precision: :unlimited}
     |> construct_description(opts)
   end
-  def between(lower, upper, opts \\ []) when lower < upper do
+  def between(lower, upper, opts \\ []) when lower <= upper do
     lower = lower * 1.0 #convert to float
     upper = upper * 1.0 #convert to float
     %{preset: :between, bounds: ~m{lower upper}, precision: :unlimited}

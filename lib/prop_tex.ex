@@ -36,4 +36,10 @@ defmodule PropTex do
       end
     end
   end
+
+  def run_tests do
+    spawn fn ->
+      :os.cmd('mix test') |> IO.puts
+    end
+  end
 end
