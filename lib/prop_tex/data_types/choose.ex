@@ -41,17 +41,18 @@ defmodule PropTex.DataTypes.Choose do
 
   def shrinker(_opts), do: &(&1)
 
-  def gen(%{preset: :from, choices: choices}, _i) do
+  def gen(%{preset: :from, choices: choices}, i) do
     index = Map.values(choices)
     |> length
     |> :rand.uniform
     index = index - 1
     Map.get(choices, index)
+    |> DataDescription.create_instance(i)
   end
-  def gen(%{preset: :from_weighted, choices: choices}, _i) do
+  def gen(%{preset: :from_weighted, choices: choices}, i) do
     val = :rand.uniform()
     {c, _w} = Enum.find(choices, fn {_c, w} -> val < w end)
-    c
+    DataDescription.create_instance(c, i)
   end
 
   def sum_choices(list) do
