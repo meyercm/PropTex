@@ -89,21 +89,19 @@ defmodule PropTex.DataTypes.Float do
     :rand.uniform() * (upper - lower) + lower
     |> set_precision(p)
   end
-  def gen(%{preset: :any, precision: p}, _i) do
-    [r0,r1,r2,r3,r4,r5,r6,r7] = for _ <- 0..7, do: trunc(:rand.uniform() * 256)
-    :erlang.binary_to_term(<<131,70,r0,r1,r2,r3,r4,r5,r6,r7>>)
-    |> set_precision(p)
+  def gen(~m{preset precision}, i) when i < 1000 do
+    :rand.uniform() * :math.pow(2, i)
+    |> update_sign(preset)
+    |> set_precision(precision)
   end
-  def gen(%{preset: :positive, precision: p}, _i) do
-    [r0,r1,r2,r3,r4,r5,r6,r7] = for _ <- 0..7, do: trunc(:rand.uniform() * 256)
-    :erlang.binary_to_term(<<131,70,0::1,r0::7,r1,r2,r3,r4,r5,r6,r7>>)
-    |> set_precision(p)
+  def gen(opts, _i), do: gen(opts, 1000) #2^1000 should be plenty big
+
+  def update_sign(val, :any) do
+    sign = :rand.uniform(2) * 2 - 3
+    val * sign
   end
-  def gen(%{preset: :negative, precision: p}, _i) do
-    [r0,r1,r2,r3,r4,r5,r6,r7] = for _ <- 0..7, do: trunc(:rand.uniform() * 256)
-    :erlang.binary_to_term(<<131,70,1::1,r0::7,r1,r2,r3,r4,r5,r6,r7>>)
-    |> set_precision(p)
-  end
+  def update_sign(val, :positive), do: val
+  def update_sign(val, :negative), do: -val
 
   def set_precision(num, :unlimited), do: num
   def set_precision(num, n), do: Float.round(num, n)

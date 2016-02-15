@@ -1,3 +1,5 @@
+# another early brainstorming session result
+
 defmodule SampleTest do
 
 

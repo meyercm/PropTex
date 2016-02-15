@@ -9,7 +9,7 @@ defmodule PropTex.DataInstance do
 
   def eval_instance(instance)
   def eval_instance(~m{%DataInstance value}=instance) do
-    value
+    eval_instance(value)
   end
   def eval_instance(instance) when is_list(instance) do
     Enum.map(instance, &eval_instance/1)

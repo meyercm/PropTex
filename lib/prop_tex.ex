@@ -8,7 +8,7 @@ defmodule PropTex do
   import PropTex.Utils.ShortMaps
 
   defmacro for_many({:<-, _, [var, run_spec]}, [do: do_block]) do
-    quote do
+    quote  do
       run_spec = unquote(run_spec)
       check_fun = fn(unquote(var)) ->
                     unquote(do_block)
@@ -24,7 +24,7 @@ defmodule PropTex do
   end
 
   def check(~m{%RunSpec run_options data_description check_fun} = run_spec) do
-    iterations = Map.get(run_options, :iterations, 1000)
+    iterations = Map.get(run_options, :iterations, 100)
     for i <- 1..iterations do
       instance = DataDescription.create_instance(data_description, i)
       data = DataInstance.eval_instance(instance)
@@ -32,7 +32,10 @@ defmodule PropTex do
         check_fun.(data)
         {:ok, i}
       rescue
-        _ -> Shrinker.shrink(instance, run_spec)
+        ex ->
+          IO.puts("Failing Instance: #{inspect ~m{data}}")
+          Shrinker.shrink(instance, run_spec)
+          raise ex
       end
     end
   end

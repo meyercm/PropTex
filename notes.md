@@ -1,3 +1,6 @@
+# Notes:
+This file is just some brainstorming from an early session working on this project.  All of the types were prefaced with Late at that point of the design.
+
 # Options
 
 - iterations: how many exemplars to check; defaults to 1000
@@ -76,6 +79,7 @@ Complex Type, just a thin wrapper around LateList (can we also do this for Map?)
 - lowercase
 - spaces
 - special characters
+- normal looking
 
 ## LateString
 

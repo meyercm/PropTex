@@ -1,3 +1,4 @@
+alias PropTex.{DataInstance, DataDescription, DataTypes}
 defmodule PropTex.DataInstanceTest do
   use ExUnit.Case
   import PropTex.TestUtils
@@ -14,11 +15,27 @@ defmodule PropTex.DataInstanceTest do
   end
 
   test "eval float returns float" do
-    data_d = PropTex.DataTypes.Float.between(10, 10)
-    data_i = PropTex.DataDescription.create_instance(data_d, 1)
-    i = PropTex.DataInstance.eval_instance(data_i)
+    data_d = DataTypes.Float.between(10, 10)
+    data_i = DataDescription.create_instance(data_d, 1)
+    i = DataInstance.eval_instance(data_i)
     assert i == 10.0
 
+  end
+
+  test "eval can eval nested types" do
+    int_instance =
+    %DataInstance{shrink_info: [1],
+                  source: %DataDescription{data_options: %{bounds: %{lower: 1, upper: 1}, preset: :between},
+                                           module: DataTypes.Integer,
+                                           shrink_fun: &(&1)},
+                  value: 1}
+    list_instance =
+    %DataInstance{shrink_info: [:something_complicated],
+                  source: %DataDescription{data_options: %{length: 1, prototype: :something_complicated, preset: :of},
+                                           module: DataTypes.List,
+                                           shrink_fun: &(&1)},
+                  value: [int_instance]}
+    assert DataInstance.eval_instance(list_instance) == [1]
   end
 
 end
