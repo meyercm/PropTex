@@ -1,5 +1,7 @@
 # PropTex
 
+[![Build Status](https://travis-ci.org/meyercm/PropTex.svg?branch=master)](http://travis-ci.org/meyercm/PropTex)
+
 An experiment in property-based testing.  
 
 **This is not ready to use.**
