@@ -25,7 +25,7 @@ I'm tired of `:triq`'s miserable Erlang macro syntax;  I wish that it could hand
 
 ### Current Features
 
- - Generators: `List`, `Integer`, `Float`
+ - Generators: `Choose`, `List`, `Integer`, `Float`
  - Shrinking
  - Iteration set per test
  - Nestable loops
@@ -34,7 +34,6 @@ I'm tired of `:triq`'s miserable Erlang macro syntax;  I wish that it could hand
 ### Future Features
  - More Generators.  In approximate implementation order:
   1. `Any`
-  1. `Choice`
   2. `Tuple`
   3. `Map`
   4. `String`
