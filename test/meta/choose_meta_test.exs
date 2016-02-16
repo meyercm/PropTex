@@ -36,7 +36,9 @@ defmodule PropTex.Meta.ChooseTest do
       for_many item <- examples_of(DataTypes.Choose.from([DataTypes.Choose.from([DataTypes.Integer.between(0,0)])])) do
         assert item == 0
       end
-      for_many item <- examples_of(DataTypes.Choose.from_weighted([DataTypes.Choose.from_weighted([{DataTypes.Integer.between(0,0), 1}, 1}])])) do
+      for_many item <- examples_of(DataTypes.Choose.from_weighted([
+                                     {DataTypes.Choose.from_weighted([
+                                       {DataTypes.Integer.between(0,0), 1}]), 1}])) do
         assert item == 0
       end
     end
