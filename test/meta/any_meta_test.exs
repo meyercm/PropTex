@@ -1,15 +1,12 @@
-alias PropTex.{DataInstance, DataDescription, DataTypes}
+alias PropTex.{DataTypes}
 defmodule PropTex.Meta.AnyTest do
   use ExUnit.Case
   import PropTex.TestUtils
-  import PropTex.Utils.ShortMaps
   import PropTex
 
   test_group "presets" do
     test "from" do
-      list = [:a, :b, :c]
-      for_many i <- examples_of(DataTypes.any) do
-        IO.inspect(i)
+      for_many _i <- examples_of(DataTypes.any) do
       end
     end
   end

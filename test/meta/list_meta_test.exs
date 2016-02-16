@@ -2,7 +2,6 @@ alias PropTex.{DataInstance, DataDescription, DataTypes}
 defmodule PropTex.Meta.ListTest do
   use ExUnit.Case
   import PropTex.TestUtils
-  import PropTex.Utils.ShortMaps
   import PropTex
 
   test_group "length" do

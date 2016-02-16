@@ -2,7 +2,6 @@ alias PropTex.{DataInstance, DataDescription, DataTypes}
 defmodule PropTex.DataTypes.ListTest do
   use ExUnit.Case
   import PropTex.TestUtils
-  import PropTex.Utils.ShortMaps
 
   test_group "#generate_instance" do
     test "allows :of to contain literals" do

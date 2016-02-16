@@ -11,6 +11,12 @@ defmodule PropTex.DataDescription do
   def create_instance(~m{%DataDescription module}=description, i) do
     apply(module, :generate_instance, [description, i])
   end
+  def create_instance(~m{__struct__}=description, i) do
+    description
+    |> Map.delete(:__struct__)
+    |> create_instance(i)
+    |> Map.put(:__struct__, __struct__)
+  end
   def create_instance(description, i) when is_list(description) do
     Enum.map(description, &(create_instance(&1, i)))
   end

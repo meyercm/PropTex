@@ -1,8 +1,7 @@
-alias PropTex.{DataInstance, DataDescription, DataTypes}
+alias PropTex.{DataTypes}
 defmodule PropTex.Meta.ChooseTest do
   use ExUnit.Case
   import PropTex.TestUtils
-  import PropTex.Utils.ShortMaps
   import PropTex
 
   test_group "presets" do

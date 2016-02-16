@@ -25,7 +25,7 @@ I'm tired of `:triq`'s miserable Erlang macro syntax;  I wish that it could hand
 
 ### Current Features
 
- - Generators: `Choose`, `List`, `Integer`, `Float`
+ - Generators: `Any`, `Choose`, `List`, `Integer`, `Float`
  - Shrinking
  - Iteration set per test
  - Nestable loops
@@ -33,7 +33,6 @@ I'm tired of `:triq`'s miserable Erlang macro syntax;  I wish that it could hand
 
 ### Future Features
  - More Generators.  In approximate implementation order:
-  1. `Any`
   2. `Tuple`
   3. `Map`
   4. `String`
@@ -44,7 +43,7 @@ I'm tired of `:triq`'s miserable Erlang macro syntax;  I wish that it could hand
  - Multiple Shrinking paths; e.g. division and subtraction, to better find the edge of passing.
  - Accumulator: specify a lambda reduce body to collect information from the inside of the `for_many` loop
  - Less insane codebase.  Currently, there is so much indirection to manage the difference between literals and generators, descriptions of generators and instances of their values that it's pretty tough to follow through the codebase.
- - Might be cool to examine typespecs; maybe have a mix-task to generate propery tests for a module based on them.
+ - Might be cool to examine typespecs; maybe have a mix-task to generate property tests for a module based on them.
 
 ## Syntax Examples (current code)
 
